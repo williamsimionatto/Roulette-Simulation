@@ -57,9 +57,9 @@ jogarMartingale <- function() {
     print(paste("Repetição", rep, "Proporção de ganhos: ", taxaVitoria(rep)))
     print(paste("Repetição", rep, "Tempo de partida: ", mean(replicate(rep, apostarMartingale()[2]))))
   }
+
+  print(paste("Perda Máxima ", min(replicate(10000, apostarMartingale()[1]))))
+  print(paste("Ganho Máximo ", max(replicate(10000, apostarMartingale()[1]))))
 }
 
 jogarMartingale()
-
-#min(replicate(10000, apostarMartingale()[1]))
-#max(replicate(10000, apostarMartingale()[1]))
