@@ -40,7 +40,7 @@ jogarNumero <- function() {
   print("SISTEMA 2 - APOSTAR NO NÚMERO")
   
   for (rep in repeticoes) {
-    print(paste("Repetição", rep, "Expectativa de ganhos: ", expectivaGanhos()))
+    print(paste("Repetição", rep, "Expectativa de ganhos: ", expectivaGanhos(rep)))
     print(paste("Repetição", rep, "Proporção de ganhos: ", taxaVitoria(rep)))
   }
 }

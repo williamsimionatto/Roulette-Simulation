@@ -50,11 +50,23 @@ taxaVitoria <- function(repeticao) {
     return(vitorias / repeticao)
 }
 
+expectivaGanhos <- function(repeticao) {
+  valorGanho <- 0
+  count <- 1
+  
+  while(count <= repeticao) {
+    count = count + 1
+    valorGanho = valorGanho + apostarMartingale()
+  }
+  
+  return(valorGanho / repeticao)
+}
+
 jogarMartingale <- function() {
   print("SISTEMA 3 - SISTEMA MARTINGALE")
 
   for (rep in repeticao) {
-    print(paste("Repetição", rep, "Proporção de ganhos: ", taxaVitoria(rep)))
+    print(paste("Repetição", rep, "Expectiva de ganhos: ", taxaVitoria(rep)))
     print(paste("Repetição", rep, "Tempo de partida: ", mean(replicate(rep, apostarMartingale()[2]))))
   }
 

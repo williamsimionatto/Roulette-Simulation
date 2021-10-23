@@ -21,22 +21,22 @@ apostarLabouchere <- function() {
     aposta <- lista[1] + lista[length(lista)]
     numeroApostas <- 0
 
-    while (length(lista) > 0 && aposta < 100) {
+    while (length(lista) > 0 && aposta <= 100) {
         numeroApostas <- numeroApostas + 1
         apostaAtual <- apostar(aposta)
 
         if (apostaAtual > 0) {
             valorGanho <- valorGanho + apostaAtual
-            lista <- lista[c(1, lista[length(lista))]
+            lista <- lista[-c(1, length(lista))]
 
-            if (length(lista) == 1) {
-                aposta <- lista[1]
-            } else {
-                aposta <- lista[1] + lista[length(lista)]
-            }
+             if (length(lista) == 1) {
+                 aposta <- lista[1]
+             } else {
+                 aposta <- lista[1] + lista[length(lista)]
+             }
         } else {
             valorGanho <- valorGanho + apostaAtual
-            lista <- c(lista, abs(current_winnings))
+            lista <- c(lista, abs(apostaAtual))
             aposta <- lista[1] + lista[length(lista)]
         }
     }
@@ -62,15 +62,28 @@ taxaVitoria <- function(repeticao) {
     return(numeroVitorias / repeticao)
 }
 
-jogarLabouchere <- function(){
+expectivaGanhos <- function(repeticao) {
+    valorGanho <- 0
+    count <- 1
+    
+    while(count <= repeticao) {
+        count = count + 1
+        valorGanho = valorGanho + apostarLabouchere()
+    }
+    
+    return(valorGanho / repeticao)
+}
+
+jogarLabouchere <- function() {
     print('SISTEMA 4 - SISTEMA LABOUCHERE')
     for (rep in repeticao) {
-        print(paste("Repetição", rep, "Proporção de ganhos: ", taxaVitoria(rep)))
+        print(paste("Repetição", rep, "Expectiva de ganhos: ", taxaVitoria(rep)))
         print(paste("Repetição", rep, "Tempo de partida: ", mean(replicate(rep, apostarLabouchere()[2]))))
     }
 
-    print(paste("Perda Máxima ", min(replicate(10000, apostarLabouchere()[1]))))
+    print(paste("Perda Máxima ", expectivaGanhos(rep)[1]))
     print(paste("Ganho Máximo ", max(replicate(10000, apostarLabouchere()[1]))))
 }
 
 jogarLabouchere()
+
