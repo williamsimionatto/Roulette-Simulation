@@ -24,11 +24,23 @@ taxaVitoria <- function(repeticao) {
   return((vitorias / repeticao) * 100)
 }
 
+expectivaGanhos <- function(repeticao) {
+  totalVitorias <- 0
+  count <- 1
+  
+  while(count <= repeticao) {
+    count = count + 1
+    totalVitorias = totalVitorias + apostarNumero()
+  }
+
+  return(totalVitorias / repeticao)
+}
+
 jogarNumero <- function() {
   print("SISTEMA 2 - APOSTAR NO NÚMERO")
   
   for (rep in repeticoes) {
-    print(paste("Repetição", rep, "Expectativa de ganhos: ", mean(replicate(rep, apostarNumero()))))
+    print(paste("Repetição", rep, "Expectativa de ganhos: ", expectivaGanhos()))
     print(paste("Repetição", rep, "Proporção de ganhos: ", taxaVitoria(rep)))
   }
 }
