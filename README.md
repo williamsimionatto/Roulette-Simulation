@@ -1,6 +1,4 @@
-# Roulette-Simulation
-Modelagem e Simulação de um jogo de roleta
-
+# Modelagem e Simulação de um jogo de roleta
 <img src="./roleta.jpg" width="650">
 
 No Las Vegas Casino, nos Estados Unidos, as roletas têm 18 slots de cor vermelha, 18
